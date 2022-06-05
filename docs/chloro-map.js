@@ -1,13 +1,13 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoianNhcndhdGUiLCJhIjoiY2t4NnI5ZjJyMDRucjJwcnl5NDh1Zml5cSJ9.qmI6QbbKDZ98r06dRnkSzQ';
-var map = new mapboxgl.Map({
+var chloromap = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/jsarwate/cl3uhu68k001f14n9t35kdhva',
     zoom: 6.5,
     center: [-85.5, 37.7]
 });
 
-map.on("load", function () {
-    map.addLayer(
+chloromap.on("load", function () {
+  chloromap.addLayer(
       {
         id: "us_states_elections_outline",
         type: "line",
@@ -22,7 +22,7 @@ map.on("load", function () {
       },
       "waterway-label" // Here's where we tell Mapbox where to slot this new layer
     ); 
-map.addLayer(
+chloromap.addLayer(
       {
         id: "us_states_elections",
         type: "fill",
@@ -56,7 +56,7 @@ map.addLayer(
      "us_states_elections_outline" // Here's where we tell Mapbox where to slot this new layer
     );
 
-    map.addLayer(
+    chloromap.addLayer(
         {
           id: "us_counties_elections_outline",
           type: "line",
@@ -71,7 +71,7 @@ map.addLayer(
         },
         "us_states_elections"
       );
-      map.addLayer(
+      chloromap.addLayer(
         {
           id: "us_counties_elections",
           type: "fill",
@@ -110,7 +110,7 @@ map.addLayer(
   });
 
 // Create the popup
-map.on('click', 'us_states_elections', function (e) {
+chloromap.on('click', 'us_states_elections', function (e) {
     var stateName = e.features[0].properties.State;
     var winner = e.features[0].properties.Winner;
     var wnrPerc = e.features[0].properties.WnrPerc;
@@ -123,18 +123,18 @@ map.on('click', 'us_states_elections', function (e) {
         .setHTML('<h4>'+stateName+'</h4>'
             +'<h2>'+winner+'</h2>'
             + '<p>'+wnrPerc+'% - ('+totalVotes+' votes)</p>')
-        .addTo(map);
+        .addTo(chloromap);
 });
 // Change the cursor to a pointer when the mouse is over the us_states_elections layer.
-map.on('mouseenter', 'us_states_elections', function () {
+chloromap.on('mouseenter', 'us_states_elections', function () {
     map.getCanvas().style.cursor = 'pointer';
 });
 // Change it back to a pointer when it leaves.
-map.on('mouseleave', 'us_states_elections', function () {
+chloromap.on('mouseleave', 'us_states_elections', function () {
     map.getCanvas().style.cursor = '';
 });
 
-map.on('click', 'us_counties_elections', function (e) {
+chloromap.on('click', 'us_counties_elections', function (e) {
     var stateName = e.features[0].properties.State;
     var countyName = e.features[0].properties.County;
     var winner = e.features[0].properties.Winner;
@@ -149,11 +149,11 @@ map.on('click', 'us_counties_elections', function (e) {
         .setHTML('<h4>' + countyName + ' - ' + stateName + '</h4>'
             + '<h2>' + winner + '</h2>'
             + '<p>' + wnrPerc + '% - (' + totalVotes + ' votes)</p>')
-        .addTo(map);
+        .addTo(chloromap);
 });
-map.on('mouseenter', 'us_counties_elections', function () {
-    map.getCanvas().style.cursor = 'pointer';
+chloromap.on('mouseenter', 'us_counties_elections', function () {
+  chloromap.getCanvas().style.cursor = 'pointer';
 });
-map.on('mouseleave', 'us_counties_elections', function () {
-    map.getCanvas().style.cursor = '';
+chloromap.on('mouseleave', 'us_counties_elections', function () {
+  chloromap.getCanvas().style.cursor = '';
 });

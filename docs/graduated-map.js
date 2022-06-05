@@ -1,5 +1,5 @@
 mapboxgl.accessToken = "pk.eyJ1IjoianNhcndhdGUiLCJhIjoiY2t4NnI5ZjJyMDRucjJwcnl5NDh1Zml5cSJ9.qmI6QbbKDZ98r06dRnkSzQ";
-var map = new mapboxgl.Map({
+var gradmap = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/jsarwate/cl3uhu68k001f14n9t35kdhva",
   zoom: 3,
@@ -13,8 +13,8 @@ var map = new mapboxgl.Map({
   projection: "albers",
 });
 
-map.on("load", function () {
-  map.addLayer(
+gradmap.on("load", function () {
+    gradmap.addLayer(
     {
       id: "us_counties_centroids",
       type: "circle",
@@ -76,7 +76,7 @@ map.on("load", function () {
     },
     "waterway-label"
   );
-  map.addLayer(
+  gradmap.addLayer(
     {
       id: "us_states_elections_outline",
       type: "line",
@@ -91,7 +91,7 @@ map.on("load", function () {
     },
     "us_counties_centroids"
   );
-  map.addLayer(
+  gradmap.addLayer(
     {
       id: "us_counties_elections_outline",
       type: "line",
@@ -109,7 +109,7 @@ map.on("load", function () {
   );
 });
 
-map.on("click", "us_counties_centroids", function (e) {
+gradmap.on("click", "us_counties_centroids", function (e) {
   var stateName = e.features[0].properties.State;
   var countyName = e.features[0].properties.County;
   var winner = e.features[0].properties.Winner;
@@ -138,9 +138,9 @@ map.on("click", "us_counties_centroids", function (e) {
     )
     .addTo(map);
 });
-map.on("mouseenter", "us_counties_centroids", function () {
+gradmap.on("mouseenter", "us_counties_centroids", function () {
   map.getCanvas().style.cursor = "pointer";
 });
-map.on("mouseleave", "us_counties_centroids", function () {
+gradmap.on("mouseleave", "us_counties_centroids", function () {
   map.getCanvas().style.cursor = "";
 });
