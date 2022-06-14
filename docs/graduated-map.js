@@ -139,8 +139,8 @@ gradmap.on("click", "us_counties_centroids", function (e) {
     .addTo(map);
 });
 gradmap.on("mouseenter", "us_counties_centroids", function () {
-  map.getCanvas().style.cursor = "pointer";
+  gradmap.getCanvas().style.cursor = "pointer";
 });
 gradmap.on("mouseleave", "us_counties_centroids", function () {
-  map.getCanvas().style.cursor = "";
+  gradmap.getCanvas().style.cursor = "";
 });

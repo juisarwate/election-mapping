@@ -127,11 +127,11 @@ chloromap.on('click', 'us_states_elections', function (e) {
 });
 // Change the cursor to a pointer when the mouse is over the us_states_elections layer.
 chloromap.on('mouseenter', 'us_states_elections', function () {
-    map.getCanvas().style.cursor = 'pointer';
+  chloromap.getCanvas().style.cursor = 'pointer';
 });
 // Change it back to a pointer when it leaves.
 chloromap.on('mouseleave', 'us_states_elections', function () {
-    map.getCanvas().style.cursor = '';
+  chloromap.getCanvas().style.cursor = '';
 });
 
 chloromap.on('click', 'us_counties_elections', function (e) {
